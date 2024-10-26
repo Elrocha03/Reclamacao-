@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reclamações - Chefe & Maria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        .container {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ff6347;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #ff5733;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Reclamações de Chefe & Maria</h1>
+    <div class="container">
+        <form id="reclamacaoForm">
+            <label for="reclamacao">Digite sua reclamação:</label>
+            <textarea id="reclamacao" required placeholder="Escreva sua reclamação aqui..."></textarea>
+            <br>
+            <button type="submit">Enviar Reclamação</button>
+        </form>
+    </div>
+    
+    <div class="container" style="margin-top: 20px;">
+        <a href="reclamacoes.html">Ver Reclamações</a>
+    </div>
+
+    <script>
+        document.getElementById('reclamacaoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const reclamacao = document.getElementById('reclamacao').value;
+
+            // Armazenar a reclamação no localStorage
+            let reclamacoes = JSON.parse(localStorage.getItem('reclamacoes')) || [];
+            reclamacoes.push(reclamacao);
+            localStorage.setItem('reclamacoes', JSON.stringify(reclamacoes));
+
+            // Limpar o campo de texto
+            document.getElementById('reclamacao').value = '';
+            alert('Reclamação enviada com sucesso!');
+        });
+    </script>
+</body>
+</html>
